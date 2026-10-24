@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "db_revision": "2026-10-24.03",
+  "generated": "2026-10-24T00:00:00Z",
+  "description": "php2shell-doctor vendor-fix database. Maps PHP installs to vendor-patched status for CVE-2026-109618 / CVE-2026-109619 (and config guidance for CVE-2026-115560). Every entry carries its source and verification date. Entries with policy=verify mean the vendor backports fixes without publishing machine-comparable upstream versions and no fixed revision has been verified yet; such installs are reported as VERIFY_VENDOR, never silently marked safe.",
+  "cves": {
+    "CVE-2026-109618": {
+      "title": "PHP: RCE via OOM corruption (php2shell)",
+      "severity": "critical",
+      "cvss_v4": "9.2",
+      "cvss_v3": "9.8",
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5",
+        "https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w",
+        "https://cert.europa.eu/publications/security-advisories/2026-018/"
+      ]
+    },
+    "CVE-2026-109619": {
+      "title": "PHP: RCE via stale request-owned global state (php2shell)",
+      "severity": "critical",
+      "cvss_v4": "9.2",
+      "cvss_v3": "8.1",
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5",
+        "https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp",
+        "https://cert.europa.eu/publications/security-advisories/2026-018/"
+      ]
+    },
+    "CVE-2026-115560": {
+      "title": "PHP: session.upload_progress serialize_handler issue (unpatched as of DB revision; config mitigation: session.upload_progress.enabled=0)",
+      "severity": "medium",
+      "cvss_v4": null,
+      "cvss_v3": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-23-1"
+      ]
+    }
+  },
+  "upstream": {
+    "description": "Upstream fixed releases published 2026-10-21 by the PHP project. PHP 8.1 and older are end-of-life; the PHP project published minimal source backports for 7.4/8.0/8.1 (source only, no binaries).",
+    "fixed": {
+      "8.5": "8.5.12",
+      "8.4": "8.4.27",
+      "8.3": "8.3.36",
+      "8.2": "8.2.35"
+    },
+    "minimal_backports_eol_branches": [
+      "7.4",
+      "8.0",
+      "8.1"
+    ],
+    "source": "https://www.php.net/archive/2026.php#2026-10-21-5"
+  },
+  "vendors": [
+    {
+      "vendor": "ubuntu",
+      "kind": "dpkg",
+      "packages": [
+        {
+          "package": "php8.3* / libapache2-mod-php8.3*",
+          "distribution": "noble (24.04 LTS)",
+          "policy": "revision",
+          "fixed_revisions": [
+            "8.3.6-0ubuntu0.24.04.13"
+          ],
+          "advisories": [
+            {
+              "id": "USN-8948-1",
+              "url": "https://usn.ubuntu.com/USN-8948-1"
+            },
+            {
+              "id": "USN-8948-2",
+              "url": "https://usn.ubuntu.com/USN-8948-2"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://ubuntu.com/security/CVE-2026-109618",
+          "note": "Upstream version stays 8.3.6; the fix ships only in the package revision. A naive upstream version check false-positives here."
+        },
+        {
+          "package": "php8.1* / libapache2-mod-php8.1*",
+          "distribution": "jammy (22.04 LTS)",
+          "policy": "verify",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "USN-8948-2",
+              "url": "https://usn.ubuntu.com/USN-8948-2"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://ubuntu.com/security/CVE-2026-109618",
+          "note": "PHP 8.1 is upstream-EOL; Ubuntu backports security fixes without bumping the upstream version. Confirm the installed revision against the USN."
+        }
+      ]
+    },
+    {
+      "vendor": "debian",
+      "kind": "dpkg",
+      "packages": [
+        {
+          "package": "php8.2* / libapache2-mod-php8.2*",
+          "distribution": "bookworm (12)",
+          "policy": "revision",
+          "fixed_revisions": [
+            "8.2.35-1~deb12u1"
+          ],
+          "advisories": [
+            {
+              "id": "DLA-4848-1",
+              "url": "https://lists.debian.org/debian-lts-announce/"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://security-tracker.debian.org/tracker/CVE-2026-109618",
+          "note": "Debian aligned the package upstream version with the fixed release."
+        },
+        {
+          "package": "php8.4* / libapache2-mod-php8.4*",
+          "distribution": "trixie (13)",
+          "policy": "revision",
+          "fixed_revisions": [
+            "8.4.27-1~deb13u1"
+          ],
+          "advisories": [
+            {
+              "id": "DSA-6574-1",
+              "url": "https://www.debian.org/security/2026/dsa-6574"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://security-tracker.debian.org/tracker/CVE-2026-109618"
+        },
+        {
+          "package": "php8.4* / libapache2-mod-php8.4*",
+          "distribution": "sid / forky",
+          "policy": "revision",
+          "fixed_revisions": [
+            "8.4.27-1"
+          ],
+          "advisories": [
+            {
+              "id": "Debian bug #1151516",
+              "url": "https://bugs.debian.org/1151516"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://security-tracker.debian.org/tracker/CVE-2026-109618"
+        }
+      ]
+    },
+    {
+      "vendor": "redhat-family",
+      "kind": "rpm",
+      "packages": [
+        {
+          "package": "php*",
+          "distribution": "RHEL / Rocky / AlmaLinux / Amazon Linux",
+          "policy": "verify",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "Red Hat errata",
+              "url": "https://access.redhat.com/security/cve/CVE-2026-109618"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://access.redhat.com/security/cve/CVE-2026-109618",
+          "note": "RHEL-family backports fixes and keeps the upstream version; only the package release field changes. Check the erratum for your minor release."
+        }
+      ]
+    },
+    {
+      "vendor": "remi",
+      "kind": "rpm",
+      "packages": [
+        {
+          "package": "php* / php8x",
+          "distribution": "Remi's RPM repository (Fedora/EPEL)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "Remi repo blog",
+              "url": "https://blog.remirepo.net/"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://blog.remirepo.net/",
+          "note": "Remi rebuilds upstream releases; the packaged upstream version is authoritative. SCL-style packages (php82-php...) carry the version in the package name."
+        }
+      ]
+    },
+    {
+      "vendor": "sury",
+      "kind": "dpkg",
+      "packages": [
+        {
+          "package": "php8.*",
+          "distribution": "deb.sury.org (Debian/Ubuntu)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "sury.org",
+              "url": "https://deb.sury.org/"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://deb.sury.org/",
+          "note": "Sury packages carry the upstream version plus a +deb.sury.org suffix; upstream comparison is authoritative."
+        }
+      ]
+    },
+    {
+      "vendor": "alpine",
+      "kind": "apk",
+      "packages": [
+        {
+          "package": "php8*",
+          "distribution": "Alpine Linux (3.x, edge)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "Alpine secdb",
+              "url": "https://security.alpinelinux.org/"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://security.alpinelinux.org/",
+          "note": "Alpine bumps pkgver to the fixed upstream release; verify against secdb for your release."
+        }
+      ]
+    },
+    {
+      "vendor": "cpanel",
+      "kind": "path",
+      "packages": [
+        {
+          "package": "ea-php*",
+          "distribution": "cPanel EasyApache 4 (/opt/cpanel/ea-php*/root)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "cPanel / EasyApache 4",
+              "url": "https://docs.cpanel.net/"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://github.com/NCSC-NL/php2shell",
+          "note": "EA4 publishes upstream-versioned ea-phpNN packages; upstream comparison is authoritative."
+        }
+      ]
+    },
+    {
+      "vendor": "plesk",
+      "kind": "path",
+      "packages": [
+        {
+          "package": "php*",
+          "distribution": "Plesk MultiPHP (/opt/plesk/php/*)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "Plesk advisory",
+              "url": "https://support.plesk.com/hc/en-us/articles/44397729587351"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://support.plesk.com/hc/en-us/articles/44397729587351",
+          "note": "Plesk ships upstream-versioned PHP builds in /opt/plesk/php/<ver>."
+        }
+      ]
+    },
+    {
+      "vendor": "cloudlinux",
+      "kind": "rpm",
+      "packages": [
+        {
+          "package": "alt-php* / ea-alt-php*",
+          "distribution": "CloudLinux / Alt-PHP",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "CloudLinux incident",
+              "url": "https://cloudlinux.statuspage.io/incidents/zl0vt1yq3dj5"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://cloudlinux.statuspage.io/incidents/zl0vt1yq3dj5",
+          "note": "Alt-PHP tracks upstream versions; check the CloudLinux advisory for cagefs/selector specifics."
+        }
+      ]
+    },
+    {
+      "vendor": "homebrew",
+      "kind": "path",
+      "packages": [
+        {
+          "package": "php / php@*",
+          "distribution": "Homebrew (macOS)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "Homebrew",
+              "url": "https://brew.sh/"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://formulae.brew.sh/formula/php"
+        }
+      ]
+    },
+    {
+      "vendor": "docker-official-images",
+      "kind": "image-tag",
+      "packages": [
+        {
+          "package": "php / frankenphp",
+          "distribution": "Docker Official Images (tag naming: php:8.x.y-*)",
+          "policy": "upstream_version",
+          "fixed_revisions": [],
+          "advisories": [
+            {
+              "id": "Docker Hub library/php",
+              "url": "https://hub.docker.com/_/php"
+            }
+          ],
+          "verified_as_of": "2026-10-24",
+          "source": "https://hub.docker.com/_/php",
+          "note": "Official image tags carry the full upstream version. Custom-built images must be inspected by executing php -v inside the container (--docker-exec)."
+        }
+      ]
+    }
+  ],
+  "config_guidance": {
+    "session.upload_progress.enabled": "PHP's own guidance for CVE-2026-109619 and the still-unpatched CVE-2026-115560: set to 0 (Off) in php.ini or pool config and restart workers. ini_set() and display_errors hiding are NOT sufficient.",
+    "memory_limit": "A finite memory_limit is the soft-limit OOM trigger surface for CVE-2026-109618. PHP's temporary mitigation is memory_limit=-1 applied non-overridably (php_admin_value), trading DoS exposure for removing the PHP-level OOM path. cgroup/container limits are the safe way to bound memory; never use RLIMIT_AS/RLIMIT_DATA/RLimitMEM.",
+    "post_max_size": "Keep small (8M without uploads, ~32M with). Note: post_max_size is enforced against the declared Content-Length only; chunked/HTTP2 lengthless bodies and decompressing proxies bypass it.",
+    "fatal_error_backtraces": "PHP 8.5 only: PHP advises setting fatal_error_backtraces=0 until fixed (relates to CVE-2026-109619 handling).",
+    "session.serialize_handler": "CVE-2026-115560: configuring session.serialize_handler=php_binary or php_serialize in INI and switching to 'php' via ini_set() before session_start() is the vulnerable pattern. Disabling session.upload_progress removes this surface until the fix ships."
+  },
+  "product_inventory": {
+    "description": "Product-level VEX status for appliances and applications that embed PHP (ClearPass, ONTAP, SEPM, ...).",
+    "source_repo": "https://github.com/NCSC-NL/php2shell",
+    "source_path": "software/spdx/PHP_Downstream_Inventory.spdx3.json",
+    "license": "EUPL-1.2 (NCSC-NL); the compiled SPDX file is fetched on demand via 'db update --ncsc' and cached locally; it is NOT redistributed inside this database."
+  }
+}

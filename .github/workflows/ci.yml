@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        go: ["1.22"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Verify no third-party dependencies
+        shell: bash
+        run: |
+          if [ -f go.sum ]; then echo "go.sum exists: third-party deps are not allowed"; exit 1; fi
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test ./... -race
+      - name: Build
+        run: go build ./...
+      - name: Self-test (embedded vendordb integrity)
+        run: go run ./cmd/php2shell-doctor self-test
+
+  db-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: data/vendordb.json matches embedded copy
+        run: |
+          diff -q data/vendordb.json internal/vendordb/vendordb.json \
+            || { echo "data/vendordb.json and internal/vendordb/vendordb.json diverged — keep the embedded copy canonical and re-copy"; exit 1; }
+      - name: DB loads and passes policy self-tests
+        run: go run ./cmd/php2shell-doctor db

@@ -1,0 +1,4 @@
+# Normalize everything to LF in the repository (bash scripts and Go
+# tooling break with CRLF on Linux); PNGs are binary.
+* text=auto eol=lf
+*.png binary

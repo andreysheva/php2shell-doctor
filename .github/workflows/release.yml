@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - name: Tests must pass before release
+        run: |
+          go vet ./...
+          go test ./...
+          go run ./cmd/php2shell-doctor self-test
+      - name: Build all platforms (reproducible, no deps)
+        env:
+          CGO_ENABLED: "0"
+        run: |
+          mkdir -p dist
+          for t in linux/amd64 linux/arm64 darwin/arm64 darwin/amd64 windows/amd64; do
+            GOOS=${t%/*} GOARCH=${t#*/} \
+            go build -trimpath -ldflags "-s -w -X main.toolVersion=${GITHUB_REF_NAME}" \
+              -o dist/php2shell-doctor-${GOOS}-${GOARCH} ./cmd/php2shell-doctor || exit 1
+          done
+          cd dist && sha256sum * > checksums.txt
+      - name: Cosign sign artifacts (keyless)
+        uses: sigstore/cosign-installer@v3
+      - run: |
+          for f in dist/php2shell-doctor-*; do
+            cosign sign-blob --yes --output-signature "$f.sig" --output-certificate "$f.pem" "$f"
+          done
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/php2shell-doctor-*
+            dist/checksums.txt
+          generate_release_notes: true

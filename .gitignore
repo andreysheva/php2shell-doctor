@@ -1,0 +1,18 @@
+# Binaries
+php2shell-doctor
+php2shell-doctor.exe
+dist/
+
+# Test artifacts
+*.test
+coverage.out
+
+# Local scan output
+*.sarif
+report.json
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
