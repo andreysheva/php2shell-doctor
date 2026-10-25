@@ -1,7 +1,8 @@
-# Binaries
-php2shell-doctor
-php2shell-doctor.exe
-dist/
+# Binaries (root-anchored: the CLI source lives in cmd/php2shell-doctor/,
+# so these patterns must NOT match nested directories)
+/php2shell-doctor
+/php2shell-doctor.exe
+/dist/
 
 # Test artifacts
 *.test
