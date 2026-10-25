@@ -12,8 +12,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-go@3041bf56c941b39c61721a86cd11f3bb1338122a # v5.2.0
         with:
           go-version: "1.22"
       - name: Tests must pass before release
@@ -33,9 +33,9 @@ jobs:
           done
           cd dist && sha256sum * > checksums.txt
       - name: Cosign sign artifacts (keyless)
-        uses: sigstore/cosign-installer@v3
+        uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3.7.0
       - run: |
-          for f in dist/php2shell-doctor-*; do
+          for f in dist/php2shell-doctor-* dist/checksums.txt; do
             cosign sign-blob --yes --output-signature "$f.sig" --output-certificate "$f.pem" "$f"
           done
       - name: Publish release
@@ -43,5 +43,5 @@ jobs:
         with:
           files: |
             dist/php2shell-doctor-*
-            dist/checksums.txt
+            dist/checksums.txt*
           generate_release_notes: true

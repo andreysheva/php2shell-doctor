@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability in php2shell-doctor itself
+    url: https://github.com/php2shell-doctor/php2shell-doctor/security/advisories/new
+    about: Please report privately via GitHub Security Advisories — see SECURITY.md
