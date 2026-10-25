@@ -27,11 +27,15 @@ jobs:
         run: |
           mkdir -p dist
           for t in linux/amd64 linux/arm64 darwin/arm64 darwin/amd64 windows/amd64; do
-            GOOS="${t%/*}"
-            GOARCH="${t#*/}"
+            export GOOS="${t%/*}"
+            export GOARCH="${t#*/}"
             go build -trimpath -ldflags "-s -w -X main.toolVersion=${GITHUB_REF_NAME}" \
               -o "dist/php2shell-doctor-${GOOS}-${GOARCH}" ./cmd/php2shell-doctor || exit 1
           done
+          # Guard: five different platforms must produce five different
+          # binaries (catches cross-compilation env not being applied).
+          n=$(sha256sum dist/php2shell-doctor-* | awk '{print $1}' | sort -u | wc -l)
+          [ "$n" -eq 5 ] || { echo "expected 5 distinct binaries, got $n"; exit 1; }
           cd dist && sha256sum * > checksums.txt
       - name: Cosign sign artifacts (keyless)
         uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3.7.0
