@@ -1,6 +1,7 @@
 # php2shell-doctor
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/andreysheva/php2shell-doctor/badge)](https://scorecard.dev/viewer/?uri=github.com/andreysheva/php2shell-doctor)
 
 <p align="center">
   <img src="docs/terminal.png" alt="php2shell-doctor scan output in a terminal" width="720">
