@@ -47,6 +47,8 @@ cd php2shell-doctor
 go build -o php2shell-doctor ./cmd/php2shell-doctor
 ```
 
+**Homebrew (macOS/Linux):** `brew install andreysheva/php2shell-doctor/php2shell-doctor`
+
 Then verify the install — every engine self-checks:
 
 ```bash
