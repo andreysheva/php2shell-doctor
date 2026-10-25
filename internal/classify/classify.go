@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/phpver"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/vendordb"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/phpver"
+	"github.com/andreysheva/php2shell-doctor/internal/vendordb"
 )
 
 // FixCVEs are the CVEs whose status the version classification covers.

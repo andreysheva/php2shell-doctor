@@ -4,7 +4,7 @@
 package report
 
 import (
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 // Exit codes (stable API — see docs/USAGE.md):

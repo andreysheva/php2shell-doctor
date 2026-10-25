@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/execx"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/execx"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 // scanProcesses enumerates running PHP-related processes for staleness

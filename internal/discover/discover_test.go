@@ -3,7 +3,7 @@ package discover
 import (
 	"testing"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 func TestMapVendorID(t *testing.T) {

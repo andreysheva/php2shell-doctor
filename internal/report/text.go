@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/ui"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/ui"
 )
 
 // TextOptions tunes the human reporter. Color is decided by the CLI
@@ -110,7 +110,7 @@ func SARIF(w io.Writer, rep *model.ScanReport) error {
 			"tool": map[string]interface{}{
 				"driver": map[string]interface{}{
 					"name":           "php2shell-doctor",
-					"informationUri": "https://github.com/php2shell-doctor/php2shell-doctor",
+					"informationUri": "https://github.com/andreysheva/php2shell-doctor",
 					"rules":          rules,
 				},
 			},

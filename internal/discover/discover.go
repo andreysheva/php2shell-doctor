@@ -16,9 +16,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/execx"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/phpver"
+	"github.com/andreysheva/php2shell-doctor/internal/execx"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/phpver"
 )
 
 // Options tunes discovery.

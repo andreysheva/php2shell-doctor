@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/execx"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/execx"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 // execReg runs reg.exe to list PHP-named subkeys (Windows only).

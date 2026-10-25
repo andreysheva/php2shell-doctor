@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 // scanPanels finds hosting-panel and platform PHP installations:

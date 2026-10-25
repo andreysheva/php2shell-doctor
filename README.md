@@ -35,13 +35,13 @@ Single static binary, zero dependencies.
 **Option 1 — install with Go** (needs [Go 1.22+](https://go.dev/doc/install)):
 
 ```bash
-go install github.com/php2shell-doctor/php2shell-doctor/cmd/php2shell-doctor@latest
+go install github.com/andreysheva/php2shell-doctor/cmd/php2shell-doctor@latest
 ```
 
 **Option 2 — build from source:**
 
 ```bash
-git clone https://github.com/php2shell-doctor/php2shell-doctor
+git clone https://github.com/andreysheva/php2shell-doctor
 cd php2shell-doctor
 go build -o php2shell-doctor ./cmd/php2shell-doctor
 ```

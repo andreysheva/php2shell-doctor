@@ -19,7 +19,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 // IniSetting is one key=value with its source.

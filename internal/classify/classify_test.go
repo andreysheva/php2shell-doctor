@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/vendordb"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/vendordb"
 )
 
 func testDB(t *testing.T) *vendordb.DB {

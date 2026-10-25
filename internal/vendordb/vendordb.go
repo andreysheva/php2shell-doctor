@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/pkgver"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/phpver"
+	"github.com/andreysheva/php2shell-doctor/internal/pkgver"
+	"github.com/andreysheva/php2shell-doctor/internal/phpver"
 )
 
 //go:embed vendordb.json

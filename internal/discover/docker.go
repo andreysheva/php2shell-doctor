@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/php2shell-doctor/php2shell-doctor/internal/execx"
-	"github.com/php2shell-doctor/php2shell-doctor/internal/model"
+	"github.com/andreysheva/php2shell-doctor/internal/execx"
+	"github.com/andreysheva/php2shell-doctor/internal/model"
 )
 
 var dockerTagVerRe = regexp.MustCompile(`(\d+)\.(\d+)(?:\.(\d+))?`)
